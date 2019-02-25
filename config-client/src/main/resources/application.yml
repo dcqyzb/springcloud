@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master
+      profile: dev
+      #      uri: http://localhost:8888
+      discovery:
+        enabled: true
+        service-id: config-server
+    bus:
+      trace:
+        enabled: true  # 设置节点状态跟踪，也可以通过网页 http://localhost:8881/trace 可以看到相关发送事件的数据内容
+  rabbitmq:
+    #    host: ${RABBIT_MQ_HOST:localhost}
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8881
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    healthcheck:
+      enabled: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh

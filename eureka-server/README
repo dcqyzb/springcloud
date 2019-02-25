@@ -1,0 +1,23 @@
+此项目为注册-服务端项目
+
+服务端配置=============================================================================
+eureka:
+  instance:
+    statusPageUrlPath: /actuator/info
+    healthCheckUrlPath: /actuator/health
+    # 设置当前实例的主机名称
+    hostname: localhost
+    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    prefer-ip-address: true # 注册时显示ip
+  client:
+    # 是否注册为服务(自己注册自己，只有一个服务的时候可以设置为false)
+    register-with-eureka: false
+    # 是否检索服务
+    fetch-registry: false
+  server:
+    #
+    waitTimeInMsWhenSyncEmpty: 0
+#    enable-self-preservation: false         # 设为false，关闭自我保护
+#    eviction-interval-timer-in-ms: #{60*1000}     # 清理间隔（单位毫秒，默认是60*1000）
+
+启用：在主程序加入注解@EnableEurekaServer

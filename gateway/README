@@ -1,0 +1,19 @@
+这个模块为api网关
+
+
+这个是配置路由的部分
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: eureka-cline        配置id
+          uri: lb://eureka-cline  配置映射路径（lb://  表示在注册中心去查找服务，后面的名称必须和注册中心的名称相同）
+          predicates:
+            - Path=/cline/**      这个为服务对外访问路径
+          filters:
+            - StripPrefix=1

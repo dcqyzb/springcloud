@@ -1,0 +1,60 @@
+此项目为注册-客户端项目
+
+注册-客户端配置==============================================================================
+eureka:
+  instance:
+    statusPageUrlPath: /actuator/info
+    healthCheckUrlPath: /actuator/health
+    hostname: localhost
+    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      # 开启健康检查（依赖spring-boot-starter-actuator）
+    healthcheck:
+      enabled: true
+
+启用标记为客户端注册：在主程序上添加注解@EnableDiscoveryClient
+
+figen:=======================================================================================
+依赖包：
+        <!--figen-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+主程序添加注解：@EnableFeignClients 启动figen
+实现类：定义=》 main.java.com.dctest.www.eurekacline.figen.FingenService
+       调用=》 main.java.com.dctest.www.eurekacline.controller.testFingenController
+
+调用配置中心服务===============================================================================
+依赖包：
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-config</artifactId>
+                </dependency>
+
+配置：
+            spring:
+              cloud:
+                #获取配置中心的配置文件
+                config:
+                  #指明远程仓库的分支
+                  label: master
+                  #dev开发环境配置文件
+                  #test测试环境
+                  #pro正式环境
+                  profile: dev
+                  uri: http://localhost:8888 #指明配置服务中心的网址
+
+
+    配置中心放置配置文件格式为：
+              http请求地址和资源文件映射如下:
+
+              /{application}/{profile}[/{label}]
+              /{application}-{profile}.yml
+              /{label}/{application}-{profile}.yml
+              /{application}-{profile}.properties
+              /{label}/{application}-{profile}.properties

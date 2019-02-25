@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/dcqyzb/test-config.git #配置git仓库地址
+          search-paths: dctestConfig #配置仓库路径
+          username: dcqyzb
+          password: 1529356805A
+      label: master
+
+server:
+  port: 8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
