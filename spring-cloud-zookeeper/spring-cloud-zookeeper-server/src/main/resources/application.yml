@@ -1,0 +1,13 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: spring-cloud-zookeeper-server
+  cloud:
+    zookeeper:
+      connect-string: 127.0.0.1:2181    #\u8FDE\u63A5zookeeper\u5730\u5740
+      discovery:
+        enabled: true
+        register: true
+        instance-host: localhost
+        instance-port: ${server.port}

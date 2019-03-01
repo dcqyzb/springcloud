@@ -1,0 +1,14 @@
+server:
+  port: 8833
+
+spring:
+  application:
+    name: spring-cloud-zookeeper-client
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+      discovery:
+        instance-host: ${INSTANCE-HOST:localhost}
+        instance-port: ${server.port}
+        register: true
+        enabled: true
