@@ -11,3 +11,4 @@ spring:
         register: true
         instance-host: localhost
         instance-port: ${server.port}
+        root: /testServer

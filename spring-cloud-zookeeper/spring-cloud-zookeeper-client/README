@@ -1,0 +1,17 @@
+zookeeper依赖================================================================
+        <!-- ZK依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+        </dependency>
+
+zookeeper配置=================================================================
+cloud:
+    zookeeper:
+      connect-string: localhost:2181   #连接zk服务的连接串
+      discovery:
+        instance-host: ${INSTANCE-HOST:localhost}
+        instance-port: ${server.port}
+        register: true #是否启动服务注册
+        enabled: true
+        root: /testServer   #zk根节点名称，默认/services

@@ -6,9 +6,10 @@ spring:
     name: spring-cloud-zookeeper-client
   cloud:
     zookeeper:
-      connect-string: localhost:2181
+      connect-string: localhost:2181   #\u8FDE\u63A5zk\u670D\u52A1\u7684\u8FDE\u63A5\u4E32
       discovery:
         instance-host: ${INSTANCE-HOST:localhost}
         instance-port: ${server.port}
-        register: true
+        register: true #\u662F\u5426\u542F\u52A8\u670D\u52A1\u6CE8\u518C
         enabled: true
+        root: /testServer   #zk\u6839\u8282\u70B9\u540D\u79F0\uFF0C\u9ED8\u8BA4/services
